@@ -1,14 +1,38 @@
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { signIn } from "./actions/sign-in";
 import { signOut } from "./actions/sign-out";
+import { auth } from "@/auth";
 
-export default function Home() {
+export default async function Home() {
+  const session= await auth();
   return (
     <div>
       Home page
 
-      <form action={signIn}>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {/* <form action={signIn}>
         <Button type="submit">Signin</Button>
       </form>
 
@@ -16,6 +40,10 @@ export default function Home() {
       <form action={signOut}>
         <Button type="submit">Signout</Button>
       </form>
+
+    {
+      session?.user && <div>{JSON.stringify(session.user)}</div>
+    } */}
 
 
       {/* <Button>Let build discuss app</Button> */}
