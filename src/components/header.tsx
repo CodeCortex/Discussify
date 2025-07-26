@@ -1,8 +1,8 @@
 import React from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { signIn } from "@/app/actions/sign-in";
-import {signOut} from"@/app/actions/sign-out"
+import { signIn } from "@/actions/sign-in";
+import {signOut} from"@/actions/sign-out"
 import { auth} from "@/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
@@ -13,6 +13,7 @@ import {
 
 import {LogOut} from "lucide-react"
 import { Separator } from "@/components/ui/separator"
+import AuthHeader from "./auth-header";
 
 const HeaderPage = async () => {
   const session = await auth();
@@ -25,7 +26,8 @@ const HeaderPage = async () => {
         <Input type="text" placeholder="Search Post..." />
       </div>
       <div className="flex justify-end gap-2">
-        {session?.user ? (
+
+        {/* {session?.user ? (
           <Popover>
             <PopoverTrigger asChild>
               <Avatar>
@@ -54,7 +56,10 @@ const HeaderPage = async () => {
               <Button>Sign out</Button>
             </form>
           </>
-        )}
+        )} */}
+
+        <AuthHeader/>
+
       </div>
     </div>
   );

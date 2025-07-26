@@ -1,13 +1,21 @@
 import { Button } from "@/components/ui/button";
-import { signIn } from "./actions/sign-in";
-import { signOut } from "./actions/sign-out";
+import { signIn } from "../actions/sign-in";
+import { signOut } from "../actions/sign-out";
 import { auth } from "@/auth";
+import TopicCreateForm from "@/components/topics/TopicCreateForm";
 
 export default async function Home() {
-  const session= await auth();
+  // const session= await auth();
   return (
-    <div>
-      Home page
+    <div className="grid grid-cols-4 gap-4 p-4">
+      <div className="col-span-3">
+        <h1 className="text-xl font-bold m-2">Home Page</h1>
+      </div>
+
+      <div>
+        {/* <Button>New Topic</Button> */}
+        <TopicCreateForm/>
+      </div>
 
 
 
