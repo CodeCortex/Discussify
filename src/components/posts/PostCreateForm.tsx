@@ -16,16 +16,22 @@ import { Textarea } from "../ui/textarea";
 import { createTopics } from "@/actions/create-topics";
 import { useActionState } from "react";
 import { Divide } from "lucide-react";
+import { createPost } from "@/actions/create-post";
 
-const TopicCreateForm = () => {
-  const [formState, action]= useActionState(createTopics,{errors:{}})
+type CreatePostFormProps={
+    slug:string;
+}
+
+
+const PostCreateForm :React.FC<CreatePostFormProps> = ({slug}) => {
+  const [formState, action]= useActionState(createPost.bind(null, slug),{errors:{}}) 
 
 
   return (
     <Dialog>
       <form>
         <DialogTrigger asChild>
-          <Button>New Topic</Button>
+          <Button>New a post</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
 
@@ -33,23 +39,23 @@ const TopicCreateForm = () => {
 
           <form action={action}>
             <DialogHeader>
-              <DialogTitle>Create a Topic</DialogTitle>
+              <DialogTitle>Create a Post</DialogTitle>
               <DialogDescription>
-                Write a new topic to start discussion. Click save when
-                you&apos;re done.
+                Write a new post. Click save when
+                you are done.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4">
               <div className="grid gap-3">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" name="name" />
+                <Label htmlFor="title">Title</Label>
+                <Input id="title" name="title" />
               </div>
-              {formState.errors.name && <p className="text-sm text-red-600">{formState.errors.name}</p>}
+              {formState.errors.title && <p className="text-sm text-red-600">{formState.errors.title}</p>}
               <div className="grid gap-3">
-                <Label htmlFor="description">Description</Label>
-                <Textarea id="description" name="description" />
+                <Label htmlFor="content">Content</Label>
+                <Textarea id="content" name="content" />
               </div>
-              {formState.errors.description && <p className="text-sm text-red-600">{formState.errors.description}</p>}
+              {formState.errors.content && <p className="text-sm text-red-600">{formState.errors.content}</p>}
               {formState.errors.formError && <div className="border border-red-600 bg-red-200 p-2 rounded ">{formState.errors.formError}</div>}
             </div>
             <DialogFooter>
@@ -68,4 +74,4 @@ const TopicCreateForm = () => {
     </Dialog>
   );
 };
-export default TopicCreateForm;
+export default PostCreateForm;
