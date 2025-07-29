@@ -2,7 +2,7 @@ import { prisma } from '@/lib';
 import { notFound } from 'next/navigation';
 import React from 'react'
 
-const PostShow = async({postId}) => {
+const PostShow = async({ postId }: { postId: string }) => {
     const post= await prisma.post.findFirst({
         where:{
             id:postId
